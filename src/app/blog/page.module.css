@@ -1,0 +1,33 @@
+.container{
+    
+}
+
+.links{
+    
+}
+
+.item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 50px;
+
+}
+
+.imgContainer{
+
+}
+
+.img{
+    object-fit: cover;
+}
+
+
+.title{
+    margin-bottom: 10px;
+}
+.desc{
+    font-size: 18px;
+    columns: #999;
+}

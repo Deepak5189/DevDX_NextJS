@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    /* gap: 1px; */
+    width: 50px;
+    height: 24px;
+    align-items: center;
+    border: 1.5px solid #bbb;
+    position: relative;
+    border-radius: 30px;
+    justify-content: space-between;
+    padding: 2px;
+
+}
+.dark{
+    padding: 9px;
+    background-color: #0000;
+    border: 1px solid #bbb;
+    border-radius: 50%;
+}
+.light{
+    padding: 9px;
+    background-color: #ffff;
+    border: 1px solid #bbb;
+    border-radius: 50%;
+}
+.ball{
+    position: absolute;
+    /* right: 0; */
+    padding: 10px;
+    background-color: #53c28b;
+    border-radius: 50%;
+    cursor: pointer;
+}
