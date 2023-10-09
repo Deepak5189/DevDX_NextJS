@@ -63,7 +63,7 @@ const Dashboard = () => {
           <div className={styles.new}>
             <form action="" className={styles.create_post} onSubmit={handleSubmit}>
               <h2 className={styles.heading}>Create New post</h2>
-              <input type="text" placeholder='Post title here' className={styles.input} />
+              <input type="text" placeholder='Post title here ' className={styles.input} />
               <input type="text" placeholder='place image url here' className={styles.input} />
               <input type="text" placeholder='Post description here' className={styles.input} />
               <textarea name="" placeholder='start typing here...' id="" cols="30" rows="10" className={styles.input}></textarea>
