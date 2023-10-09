@@ -1,8 +1,9 @@
 import User from "@/models/User";
 import Connect from "@/utils/db";
 import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import Error from "next/error";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+// import Error from "next/error";
 import bcrypt from "bcryptjs"
 
 const handler= NextAuth({
@@ -38,6 +39,9 @@ const handler= NextAuth({
       },
     }),
   ],
+  pages:{
+    error:"/dashboard/login",
+  }
 });
 
 export {handler as GET, handler as POST};
