@@ -4,6 +4,7 @@ import Link from 'next/link'
 import styles from './navbar.module.css'
 import ToggleMode from '../togglemode/togglemode'
 import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 const links=[
   {
@@ -40,6 +41,14 @@ const links=[
 
 const Navbar = () => {
   const session = useSession();
+  const router=useRouter();
+
+  const handleLogOut=()=>{
+    signOut();
+    router.push('/');
+  }
+
+
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.logo}>DevDX</Link>
@@ -51,7 +60,7 @@ const Navbar = () => {
         {
           session.status==="authenticated" && <button 
         className={styles.logout} 
-        onClick={signOut}>
+        onClick={handleLogOut}>
           Logout
         </button>
         }

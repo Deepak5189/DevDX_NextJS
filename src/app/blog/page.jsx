@@ -3,8 +3,10 @@ import Link from 'next/link'
 import React from 'react'
 import styles from './page.module.css'
 
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/posts")
+const getData=async ()=> {
+  const res = await fetch("http://localhost:3000/api/posts",{
+    method: "GET",
+  })
 
   if (!res.ok) {
 

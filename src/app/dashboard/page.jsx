@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react'
 // import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Dashboard = () => {
   const session=useSession();
@@ -15,7 +16,7 @@ const Dashboard = () => {
 
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-  const { data, error, isLoading } = useSWR(`api/posts?username=${session.data?.user.name}`, fetcher)
+  const { data, mutate, isLoading } = useSWR(`api/posts?username=${session.data?.user.name}`, fetcher)
   console.log(data);
 
   const handleSubmit= async (e)=>{
@@ -31,8 +32,21 @@ const Dashboard = () => {
         method: 'POST',
         body: JSON.stringify({title,desc,img,content,username: session.data.user.name})
       });
+      mutate();
+      e.target.reset();
     }catch(err){
       console.log(err)
+    }
+  }
+
+  const handleDelete= async (id)=>{
+    try{
+      await fetch(`api/posts/${id}`, {
+        method: "DELETE",
+      });
+      mutate();
+    }catch(err){
+      throw new Error(err);
     }
   }
  
@@ -51,13 +65,13 @@ const Dashboard = () => {
         <div className={styles.container}>
           <div className={styles.posts}>
             {isLoading?<p>....Loading</p>: data?.map((item)=>(
-              <div className={styles.post} key={item._id}>
-                <div className={styles.img}>
-                  <Image src={item.img} alt='image' width={200} height={200}/>
+              <Link href={`blog/${item._id}`} className={styles.post} key={item._id}>
+                <div className={styles.img_container}>
+                  <Image src={item.img} alt='image' width={200} height={100}/>
                 </div>
                 <h1 className={styles.postTitle}>{item.title}</h1>
-                <span className={styles.delete}>X</span>
-              </div>
+                <span className={styles.delete} onClick={()=>handleDelete(item._id)}>X</span>
+              </Link>
             ))}
           </div>
           <div className={styles.new}>
